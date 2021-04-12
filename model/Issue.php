@@ -95,4 +95,22 @@ class Issue
         $result = $this->db_handle->runQuery($query, $paramType, $paramValue);
         return $result;
     }
+
+    function getIssueBySub2($subject)
+    {
+        $query = "SELECT count(1)  FROM issue WHERE subject = ?";
+        $paramType = "s";
+        $paramValue = array(
+            $subject
+        );
+
+        $result = $this->db_handle->runQuery2($query, $paramType, $paramValue);
+        @$count = sizeof($result);
+        echo $count;
+        if ($count > 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }

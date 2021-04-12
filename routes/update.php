@@ -9,7 +9,7 @@ if (count($_POST) > 0) {
     $dueDate = $_POST['dueDate'];
 
     $issue = new Issue();
-    $isExist = $issue->getIssueBySub($subject);
+    $isExist = $issue->getIssueBySub2($subject);
 
     if (!$isExist) {
         $result = $issue->updateIssue($assignee, $subject, $status, $dueDate, $id);

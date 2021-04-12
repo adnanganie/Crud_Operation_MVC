@@ -115,11 +115,11 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom" style="bottom:10px;padding-bottom: 10px;">
-            <div class="container-sm">
+        <div class="footer">
+            <div class="container-sm container-md">
                 <div class="row">
                     <div class="lead">
-                        &copy; 2021 Copyright to Adnan. All rights reserved.
+                        &copy; 2021 Copyright to AdnanAyoub. All rights reserved.
 
                     </div>
                 </div>
@@ -303,7 +303,7 @@
                         success: function(result) {
 
                             try {
-
+console.log(result)
                                 var result = JSON.parse(result);
                                 if (result.statusCode == 200) {
                                     $('#issueModal').modal('hide');
