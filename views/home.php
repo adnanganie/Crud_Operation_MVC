@@ -322,12 +322,12 @@
                         type: "post",
                         url: "../routes/update.php",
                         success: function(result) {
-
+                            console.log(result)
                             try {
                                 var result = JSON.parse(result);
                                 if (result.statusCode == 200) {
                                     $('#issueModal').modal('hide');
-                                    alert('Data updated successfully !');
+                                    alert('Data updated successfully!');
                                     location.reload();
                                 } else if (result.statusCode == 201) {
                                     alert(result.data);
@@ -377,17 +377,18 @@
                 });
             }
 
-            /*****************           Edit Form   *********************** */
+/******************************************** Edit Form ****************************************/
+
             function editRow(id) {
+
                 var obj = {};
                 obj["id"] = id
-
                 $.ajax({
                     data: obj,
                     type: "post",
                     url: "../routes/getIssue.php",
                     success: function(result) {
-
+                        console.log(result)
                         var result = JSON.parse(result);
                         if (result.statusCode == 200) {
                             let res = result.data
