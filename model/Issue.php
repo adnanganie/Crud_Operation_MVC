@@ -113,4 +113,17 @@ class Issue
             return 0;
         }
     }
+
+
+
+    function file_get_contents_curl($image_url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $image_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch);
+        curl_close($ch);
+       
+       return $output;
+    }
 }

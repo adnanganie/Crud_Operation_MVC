@@ -35,3 +35,5 @@ if (count($_POST) > 0) {
         echo json_encode(array("statusCode" => 200, "data" => "Data deleted successfully !"));
     }
 }
+
+

@@ -27,6 +27,8 @@
                 <h2>Issue <b>Tracker</b></h2>
             </div>
             <div class="col-sm-4">
+                <a href="JavaScript:void(0);" class="btn btn-success" id="showImg"><i class="fa fa-file-o "></i>
+                    Show Image</a>
                 <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#issueModal">
                     <i class="fa fa-plus "></i> Add Issue
                 </button>
@@ -118,6 +120,9 @@
         <div class="footer">
             <div class="container-sm container-md">
                 <div class="row">
+                <div class="col-md-2" >
+                    <span id="displayImg"></span>
+                </div>
                     <div class="lead">
                         &copy; 2021 Copyright to AdnanAyoub. All rights reserved.
 
@@ -185,8 +190,35 @@
                     }
                 });
 
+
             });
 
+            /************************************show Image **********************************************/
+            $(document).on('click', '#showImg', function(e) {
+                e.preventDefault()
+
+                $.ajax({
+                    type: "post",
+                    url: "../routes/getImg.php",
+                    success: function(res) {
+                        console.log("ddd",res)
+                        $("#displayImg").append(`
+                      ${res}
+                         
+                            `)
+                        var result = JSON.parse(res);
+                        if (result.statusCode == 200) {
+
+                          
+                        } else if (result.statusCode == 201) {
+                            alert(result);
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e)
+                    }
+                });
+            });
 
             /******************** Add request ********************************************/
 
@@ -303,7 +335,6 @@
                         success: function(result) {
 
                             try {
-console.log(result)
                                 var result = JSON.parse(result);
                                 if (result.statusCode == 200) {
                                     $('#issueModal').modal('hide');
