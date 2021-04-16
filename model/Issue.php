@@ -116,14 +116,18 @@ class Issue
 
 
 
-    function file_get_contents_curl($image_url)
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $image_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($ch);
-        curl_close($ch);
+    function file_get_contents_curl($image_url){
+        $start = curl_init();
+        curl_setopt($start, CURLOPT_URL, $image_url);
+        curl_setopt($start, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($start, CURLOPT_SSLVERSION, 3);
+        $file_data = curl_exec($start);
+        curl_close($start);
+        $file_path = '../upload/' . uniqid() . '.png';
+        $file = fopen($file_path, 'w+');
+        fputs($file, $file_data);
+        fclose($file);
+       return '<img src="'.$file_path.'" class="img-thumbnail" width="250" />';
        
-       return $output;
     }
 }

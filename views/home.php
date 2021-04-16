@@ -120,9 +120,9 @@
         <div class="footer">
             <div class="container-sm container-md">
                 <div class="row">
-                <div class="col-md-2" >
-                    <span id="displayImg"></span>
-                </div>
+                    <div class="col-md-2">
+                        <span id="displayImg"></span>
+                    </div>
                     <div class="lead">
                         &copy; 2021 Copyright to AdnanAyoub. All rights reserved.
 
@@ -194,25 +194,14 @@
             });
 
             /************************************show Image **********************************************/
+
             $(document).on('click', '#showImg', function(e) {
                 e.preventDefault()
-
                 $.ajax({
                     type: "post",
                     url: "../routes/getImg.php",
                     success: function(res) {
-                        console.log("ddd",res)
-                        $("#displayImg").append(`
-                      ${res}
-                         
-                            `)
-                        var result = JSON.parse(res);
-                        if (result.statusCode == 200) {
-
-                          
-                        } else if (result.statusCode == 201) {
-                            alert(result);
-                        }
+                        $("#displayImg").append(`${res}`)
                     },
                     error: function(e) {
                         console.log(e)
